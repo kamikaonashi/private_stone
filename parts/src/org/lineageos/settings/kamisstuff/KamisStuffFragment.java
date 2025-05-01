@@ -23,6 +23,7 @@ import androidx.preference.PreferenceFragment;
 import org.lineageos.settings.R;
 import org.lineageos.settings.corecontrol.CoreControlActivity;
 import org.lineageos.settings.fastcharge.FastChargeActivity;
+import org.lineageos.settings.gamebar.GameBarSettingsActivity;
 import org.lineageos.settings.zram.ZramActivity;
 import org.lineageos.settings.performance.PerformanceActivity;
 
@@ -30,6 +31,7 @@ public class KamisStuffFragment extends PreferenceFragment {
 
     private static final String KEY_CORE_CONTROL = "core_control";
     private static final String KEY_FAST_CHARGE = "fast_charge";
+    private static final String KEY_GAME_BAR = "game_bar";
     private static final String KEY_ZRAM = "zram";
     private static final String KEY_PERFORMANCE = "performance";
 
@@ -52,6 +54,16 @@ public class KamisStuffFragment extends PreferenceFragment {
         if (fastChargePref != null) {
             fastChargePref.setOnPreferenceClickListener(preference -> {
                 Intent intent = new Intent(getActivity(), FastChargeActivity.class);
+                startActivity(intent);
+                return true;
+            });
+        }
+
+        // GameBar preference
+        Preference gameBarPref = findPreference(KEY_GAME_BAR);
+        if (gameBarPref != null) {
+            gameBarPref.setOnPreferenceClickListener(preference -> {
+                Intent intent = new Intent(getActivity(), GameBarSettingsActivity.class);
                 startActivity(intent);
                 return true;
             });
