@@ -26,4 +26,10 @@
         android:summary="@string/zram_summary"
         android:icon="@drawable/ic_zram" />
 
+    <Preference
+        android:key="game_bar"
+        android:title="@string/game_bar_title"
+        android:summary="@string/game_bar_summary"
+        android:icon="@drawable/ic_gamebar" />
+
 </PreferenceScreen>

@@ -30,12 +30,14 @@ import androidx.preference.PreferenceManager;
 import android.view.Display;
 import android.view.Display.HdrCapabilities;
 
+import org.lineageos.settings.gamebar.GameBar;
+import org.lineageos.settings.gamebar.GameBarMonitorService;
 import org.lineageos.settings.thermal.ThermalUtils;
 import org.lineageos.settings.refreshrate.RefreshUtils;
 import org.lineageos.settings.utils.FileUtils;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
-    private static final boolean DEBUG = false;
+    private static final boolean DEBUG = true;
     private static final String TAG = "XiaomiParts";
     private static final String DC_DIMMING_ENABLE_KEY = "dc_dimming_enable";
     private static final String DC_DIMMING_NODE = "/sys/devices/platform/soc/soc:qcom,dsi-display-primary/dimlayer_exposure";
@@ -47,20 +49,53 @@ public class BootCompletedReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(final Context context, Intent intent) {
-    SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        if (DEBUG)
-            Log.d(TAG, "Received boot completed intent");
-        ThermalUtils.startService(context);
-        RefreshUtils.startService(context);
-        overrideHdrTypes(context);
+        String action = intent.getAction();
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        
+        if (Intent.ACTION_BOOT_COMPLETED.equals(action)) {
+            if (DEBUG) Log.d(TAG, "Received boot completed intent");
+            
+            // Restore game bar preferences
+            restoreGameBarOverlayState(context);
+            if (DEBUG) Log.d(TAG, "Restoring GameBar overlay state");
+            
+            // Start services
+            ThermalUtils.startService(context);
+            RefreshUtils.startService(context);
+            if (DEBUG) Log.d(TAG, "Starting RefreshService");
+            
+            overrideHdrTypes(context);
 
-        // DC Dimming
-        FileUtils.enableService(context);
-        boolean dcDimmingEnabled = sharedPrefs.getBoolean(DC_DIMMING_ENABLE_KEY, false);
-        FileUtils.writeLine(DC_DIMMING_NODE, dcDimmingEnabled ? "1" : "0");
+            // DC Dimming
+            FileUtils.enableService(context);
+            boolean dcDimmingEnabled = sharedPrefs.getBoolean(DC_DIMMING_ENABLE_KEY, false);
+            FileUtils.writeLine(DC_DIMMING_NODE, dcDimmingEnabled ? "1" : "0");
 
-        // Performance Mode - Ensure default governor on boot
-        ensureDefaultGovernor();
+            // Performance Mode - Ensure default governor on boot
+            ensureDefaultGovernor();
+            
+        } else if (Intent.ACTION_LOCKED_BOOT_COMPLETED.equals(action)) {
+            if (DEBUG) Log.d(TAG, "Received locked boot completed intent");
+            
+            // Restore game bar preferences
+            restoreGameBarOverlayState(context);
+            if (DEBUG) Log.d(TAG, "Restoring GameBar overlay state");
+        }
+    }
+
+    private void restoreGameBarOverlayState(Context context) {
+        var prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean mainEnabled = prefs.getBoolean("game_bar_enable", false);
+        boolean autoEnabled = prefs.getBoolean("game_bar_auto_enable", false);
+        if (mainEnabled) {
+            GameBar.getInstance(context).applyPreferences();
+            GameBar.getInstance(context).show();
+        }
+        if (autoEnabled) {
+            // Start GameBarMonitorService
+            Intent monitorIntent = new Intent(context, GameBarMonitorService.class);
+            context.startService(monitorIntent);
+        }
     }
 
     private void ensureDefaultGovernor() {
@@ -81,5 +116,5 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         final DisplayManager dm = context.getSystemService(DisplayManager.class);
         dm.overrideHdrTypes(Display.DEFAULT_DISPLAY, new int[]{
                 HdrCapabilities.HDR_TYPE_HDR10, HdrCapabilities.HDR_TYPE_HDR10_PLUS, HdrCapabilities.HDR_TYPE_HLG});
-        }
+    }
 }
