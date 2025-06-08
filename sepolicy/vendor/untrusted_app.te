@@ -1,0 +1,2 @@
+allow untrusted_app vendor_sysfs_perfmode:file { read open getattr };
+allow untrusted_app vendor_sysfs_perfmode:dir  { read open search getattr };
