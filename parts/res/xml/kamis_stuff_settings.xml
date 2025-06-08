@@ -15,6 +15,12 @@
         android:icon="@drawable/ic_fast_charge" />
 
     <Preference
+    	android:key="performance"
+    	android:title="@string/performance_mode_title"
+    	android:summary="@string/performance_mode_summary"
+    	android:icon="@drawable/ic_performance" />
+
+    <Preference
         android:key="zram"
         android:title="@string/zram_size_title"
         android:summary="@string/zram_summary"

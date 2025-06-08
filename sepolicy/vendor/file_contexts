@@ -56,6 +56,19 @@
 /dev/st21nfc                                                                   u:object_r:nfc_device:s0
 /vendor/bin/hw/android\.hardware\.nfc-service\.st                              u:object_r:hal_nfc_default_exec:s0
 
+# Performance Mode - CPU files
+/sys/devices/system/cpu/cpufreq/policy0/scaling_governor           		u:object_r:vendor_sysfs_perfmode:s0
+/sys/devices/system/cpu/cpufreq/policy6/scaling_governor           		u:object_r:vendor_sysfs_perfmode:s0
+/sys/devices/system/cpu/cpufreq/policy0/scaling_cur_freq           		u:object_r:vendor_sysfs_perfmode:s0
+/sys/devices/system/cpu/cpufreq/policy6/scaling_cur_freq           		u:object_r:vendor_sysfs_perfmode:s0
+
+# Performance Mode - GPU files
+/sys/class/kgsl/kgsl-3d0/max_clock_mhz                            		u:object_r:vendor_sysfs_perfmode:s0
+/sys/class/kgsl/kgsl-3d0/min_clock_mhz                             		u:object_r:vendor_sysfs_perfmode:s0
+/sys/class/kgsl/kgsl-3d0/default_pwrlevel                          		u:object_r:vendor_sysfs_perfmode:s0
+/sys/class/kgsl/kgsl-3d0/force_clk_on                              		u:object_r:vendor_sysfs_perfmode:s0
+/sys/class/kgsl/kgsl-3d0/force_rail_on                             		u:object_r:vendor_sysfs_perfmode:s0
+
 # Sensors
 /vendor/bin/hw/android\.hardware\.sensors-service\.xiaomi-multihal             u:object_r:hal_sensors_default_exec:s0
 

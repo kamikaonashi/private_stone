@@ -115,4 +115,20 @@
     <string name="kamis_stuff_title">Kamis Stuff</string>
     <string name="kamis_stuff_summary">Bricking Time!</string>
 
+    <!-- Performance Mode -->
+    <string name="performance_mode_title">Performance Mode</string>
+    <string name="performance_mode_summary">Toggle CPU and GPU performance</string>
+    <string name="performance_mode_enabled_summary">Performance mode active - Maximum CPU and GPU performance</string>
+    <string name="performance_mode_disabled_summary">Balanced mode active - CPU and GPU scaling enabled</string>
+    <string name="performance_info_category">Information</string>
+    <string name="performance_info_title">About Performance Mode</string>
+    <string name="performance_info_summary">Switches CPU governor between schedutil (balanced) and performance (maximum speed). Also controls GPU frequency scaling and power levels. Performance mode may increase battery drain and heat significantly.</string>
+    <string name="performance_status_category">Current Status</string>
+    <string name="gpu_status_title">GPU Status</string>
+    <string name="gpu_status_loading">Loading GPU information...</string>
+    <string name="cpu_status_title">CPU Status</string>
+    <string name="cpu_status_loading">Loading CPU information...</string>
+    <string name="little_cpu_status_title">Little CPU Cluster</string>
+    <string name="big_cpu_status_title">Big CPU Cluster</string>
+
 </resources>

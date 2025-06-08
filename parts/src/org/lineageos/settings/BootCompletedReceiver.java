@@ -39,6 +39,11 @@ public class BootCompletedReceiver extends BroadcastReceiver {
     private static final String TAG = "XiaomiParts";
     private static final String DC_DIMMING_ENABLE_KEY = "dc_dimming_enable";
     private static final String DC_DIMMING_NODE = "/sys/devices/platform/soc/soc:qcom,dsi-display-primary/dimlayer_exposure";
+    
+    // Performance Mode paths
+    private static final String POLICY0_GOVERNOR_PATH = "/sys/devices/system/cpu/cpufreq/policy0/scaling_governor";
+    private static final String POLICY6_GOVERNOR_PATH = "/sys/devices/system/cpu/cpufreq/policy6/scaling_governor";
+    private static final String DEFAULT_GOVERNOR = "schedutil";
 
     @Override
     public void onReceive(final Context context, Intent intent) {
@@ -53,6 +58,22 @@ public class BootCompletedReceiver extends BroadcastReceiver {
         FileUtils.enableService(context);
         boolean dcDimmingEnabled = sharedPrefs.getBoolean(DC_DIMMING_ENABLE_KEY, false);
         FileUtils.writeLine(DC_DIMMING_NODE, dcDimmingEnabled ? "1" : "0");
+
+        // Performance Mode - Ensure default governor on boot
+        ensureDefaultGovernor();
+    }
+
+    private void ensureDefaultGovernor() {
+        try {
+            FileUtils.writeLine(POLICY0_GOVERNOR_PATH, DEFAULT_GOVERNOR);
+            FileUtils.writeLine(POLICY6_GOVERNOR_PATH, DEFAULT_GOVERNOR);
+            
+            if (DEBUG) {
+                Log.d(TAG, "Set default governor to " + DEFAULT_GOVERNOR);
+            }
+        } catch (Exception e) {
+            Log.w(TAG, "Failed to set default governor", e);
+        }
     }
 
     private static void overrideHdrTypes(Context context) {
