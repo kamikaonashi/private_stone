@@ -81,3 +81,7 @@
 
 # ZRAM
 /sys/block/zram0/comp_algorithm 					       u:object_r:sysfs_zram:s0
+
+# Power
+/vendor/bin/hw/android\.hardware\.power-service\.pixel-libperfmgr 	       u:object_r:hal_power_default_exec:s0
+/sys/class/kgsl/kgsl-3d0(/.*)?    					       u:object_r:vendor_sysfs_kgsl:s0
