@@ -72,3 +72,7 @@
 # Performance Mode - CPU governor files
 /sys/devices/system/cpu/cpufreq/policy0/scaling_governor           u:object_r:vendor_sysfs_perfmode:s0
 /sys/devices/system/cpu/cpufreq/policy6/scaling_governor           u:object_r:vendor_sysfs_perfmode:s0
+
+# Power
+/vendor/bin/hw/android\.hardware\.power-service\.pixel-libperfmgr 	       u:object_r:hal_power_default_exec:s0
+/sys/class/kgsl/kgsl-3d0(/.*)?    					       u:object_r:vendor_sysfs_kgsl:s0
