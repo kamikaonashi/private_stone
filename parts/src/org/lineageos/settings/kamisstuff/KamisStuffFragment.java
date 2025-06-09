@@ -24,12 +24,14 @@ import org.lineageos.settings.R;
 import org.lineageos.settings.corecontrol.CoreControlActivity;
 import org.lineageos.settings.fastcharge.FastChargeActivity;
 import org.lineageos.settings.zram.ZramActivity;
+import org.lineageos.settings.performance.PerformanceActivity;
 
 public class KamisStuffFragment extends PreferenceFragment {
 
     private static final String KEY_CORE_CONTROL = "core_control";
     private static final String KEY_FAST_CHARGE = "fast_charge";
     private static final String KEY_ZRAM = "zram";
+    private static final String KEY_PERFORMANCE = "performance";
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -60,6 +62,16 @@ public class KamisStuffFragment extends PreferenceFragment {
         if (zramPref != null) {
             zramPref.setOnPreferenceClickListener(preference -> {
                 Intent intent = new Intent(getActivity(), ZramActivity.class);
+                startActivity(intent);
+                return true;
+            });
+        }
+        
+        // Performance preference
+        Preference performancePref = findPreference(KEY_PERFORMANCE);
+        if (performancePref != null) {
+            performancePref.setOnPreferenceClickListener(preference -> {
+                Intent intent = new Intent(getActivity(), PerformanceActivity.class);
                 startActivity(intent);
                 return true;
             });

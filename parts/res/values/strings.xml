@@ -115,4 +115,13 @@
     <string name="kamis_stuff_title">Kamis Stuff</string>
     <string name="kamis_stuff_summary">Bricking Time!</string>
 
+    <!-- Performance Mode -->
+    <string name="performance_mode_title">Performance Mode</string>
+    <string name="performance_mode_summary">Toggle CPU performance governor</string>
+    <string name="performance_mode_enabled_summary">Performance mode active - CPU governor set to performance</string>
+    <string name="performance_mode_disabled_summary">Balanced mode active - CPU governor set to schedutil</string>
+    <string name="performance_info_category">Information</string>
+    <string name="performance_info_title">About Performance Mode</string>
+    <string name="performance_info_summary">Switches CPU governor between schedutil (balanced) and performance (maximum speed). Performance mode may increase battery drain and heat.</string>
+
 </resources>

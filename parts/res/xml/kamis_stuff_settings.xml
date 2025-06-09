@@ -20,4 +20,10 @@
         android:summary="@string/zram_summary"
         android:icon="@drawable/ic_zram" />
 
+    <Preference
+        android:key="performance"
+        android:title="@string/performance_mode_title"
+        android:summary="@string/performance_mode_summary"
+        android:icon="@drawable/ic_performance" />
+
 </PreferenceScreen>

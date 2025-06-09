@@ -56,3 +56,7 @@ genfscon sysfs /sys/devices/platform/soc/5e00000.qcom,mdss_mdp/drm/card0/card0-D
 genfscon sysfs /sys/kernel/fast_charge/force_fast_charge u:object_r:vendor_sysfs_fastcharge:s0
 genfscon sysfs /sys/kernel/fastchgtoggle/mode u:object_r:vendor_sysfs_fastcharge:s0
 genfscon sysfs /sys/kernel/fastchgtoggle/thermals u:object_r:vendor_sysfs_fastcharge:s0
+
+# Performance Mode - CPU governor files
+genfscon sysfs /devices/system/cpu/cpufreq/policy0/scaling_governor u:object_r:vendor_sysfs_perfmode:s0
+genfscon sysfs /devices/system/cpu/cpufreq/policy6/scaling_governor u:object_r:vendor_sysfs_perfmode:s0

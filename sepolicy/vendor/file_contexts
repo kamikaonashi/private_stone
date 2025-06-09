@@ -68,3 +68,7 @@
 
 # ZRAM
 /sys/block/zram0/comp_algorithm 					       u:object_r:sysfs_zram:s0
+
+# Performance Mode - CPU governor files
+/sys/devices/system/cpu/cpufreq/policy0/scaling_governor           u:object_r:vendor_sysfs_perfmode:s0
+/sys/devices/system/cpu/cpufreq/policy6/scaling_governor           u:object_r:vendor_sysfs_perfmode:s0
