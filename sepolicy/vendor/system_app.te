@@ -26,6 +26,10 @@ get_prop(system_app, vendor_default_prop)
 # Perf Mode
 allow system_app vendor_sysfs_kgsl:dir search;
 allow system_app vendor_sysfs_kgsl:file { getattr open read write };
+allow system_app vendor_sysfs_kgsl_gpuclk:dir search;
+allow system_app vendor_sysfs_kgsl_gpuclk:file { getattr open read write };
 allow system_app vendor_sysfs_perfmode:dir search;
 allow system_app vendor_sysfs_perfmode:file { getattr open read write };
 allow system_app vendor_sysfs_perfmode:lnk_file { getattr open read write };
+allow system_app proc_stat:dir search;
+allow system_app proc_stat:file { getattr open read write };
