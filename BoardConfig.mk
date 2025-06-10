@@ -101,6 +101,8 @@ TARGET_KERNEL_CONFIG := stone_defconfig
 TARGET_KERNEL_SOURCE := kernel/xiaomi/stone
 TARGET_KERNEL_NO_GCC := true
 TARGET_KERNEL_VERSION := 5.4
+TARGET_KERNEL_CLANG_COMPILE := true
+TARGET_KERNEL_CLANG_VERSION := kami
 
 # OTA assert
 TARGET_OTA_ASSERT_DEVICE := moonstone,sunstone,stone
