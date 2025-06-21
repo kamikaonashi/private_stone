@@ -19,7 +19,3 @@ set_prop(system_app, vendor_zram_prop)
 get_prop(system_app, vendor_zram_prop)
 set_prop(system_app, vendor_default_prop)
 get_prop(system_app, vendor_default_prop)
-
-# Performance Mode
-allow system_app sysfs_devices_system_cpu:file { open write };
-allow system_app sysfs_devices_system_cpu:dir search;

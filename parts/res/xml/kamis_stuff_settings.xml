@@ -26,10 +26,4 @@
     	android:summary="@string/useless_mode_summary"
     	android:icon="@drawable/ic_useless" />
 
-    <Preference
-        android:key="performance"
-        android:title="@string/performance_mode_title"
-        android:summary="@string/performance_mode_summary"
-        android:icon="@drawable/ic_performance" />
-
 </PreferenceScreen>

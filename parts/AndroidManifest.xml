@@ -101,11 +101,6 @@
     	    android:label="@string/useless_mode_title"
     	    android:exported="false" />
 
-	<activity
-    	    android:name=".performance.PerformanceActivity"
-    	    android:label="@string/performance_mode_title"
-    	    android:exported="false" />
-
         <activity
             android:name=".speaker.ClearSpeakerActivity" 
             android:label="@string/clear_speaker_title">
